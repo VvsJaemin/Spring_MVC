@@ -17,26 +17,26 @@ public class AddressMapperTests {
 	@Autowired
 	private AddressMapper addressMapper;
 
-//	@Test
-//	public void testList() {
-//
-//		log.info("#AddressMapperTests addressMapper : " + addressMapper);
-//		log.info("#AddressMapperTests testList() : " + addressMapper.list());
-//
-//	}
+	@Test
+	public void testList() {
+
+		log.info("#AddressMapperTests addressMapper : " + addressMapper);
+		log.info("#AddressMapperTests testList() : " + addressMapper.list());
+
+	}
 	
 	@Test
 	public void testInsert() {
-		Address address = new Address(-1, "힘든2", "세팅2", null);
+		Address address = new Address(-1, "안녕", "안녕", null);
 		addressMapper.insert(address);
 		log.info("#AddressMapperTests insert() :");
 	}
 	
-//	@Test
-//	public void testDelete() {
-//		long seq = 18L;
-//		addressMapper.delete(seq);
-//		log.info("#AddressMapperTests delete() 수행완료");
-//	}
+	@Test
+	public void testDelete() {
+		long seq = 18L;
+		addressMapper.delete(seq);
+		log.info("#AddressMapperTests delete() 수행완료");
+	}
 
 }
