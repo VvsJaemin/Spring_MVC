@@ -26,9 +26,9 @@
 
 	</select>
 
-	<update id="update" parameterType="board">
+	<update id="update">
 
-		update BOARD set (#{writer}, #{email}, #{subject}, #{content}, SYSDATE) where seq = #{seq}
+		update BOARD set writer=#{writer}, email=#{email}, subject=#{subject}, content=#{content} where seq = #{seq}
 
 	</update>
 
