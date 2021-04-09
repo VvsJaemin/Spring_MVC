@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="min.md.mapper.BoardMapper">
+
+	<select id="list" resultType="board">
+
+		SELECT*FROM BOARD order by SEQ desc
+
+	</select>
+
+	<insert id="insert" parameterType="board">
+
+		insert into BOARD
+		values(BOARD_SEQ.nextval, #{subject}, #{content},
+		#{writer}, #{email},
+		SYSDATE)
+
+	</insert>
+
+	<select id="read" resultType="board">
+
+		SELECT * FROM BOARD where SEQ =
+		#{SEQ}
+
+	</select>
+
+	<update id="update" parameterType="board">
+
+		update BOARD set (#{writer}, #{email}, #{subject}, #{content}, SYSDATE) where seq = #{seq}
+
+	</update>
+
+	<delete id="delete" parameterType="long">
+
+		delete from BOARD where
+		SEQ=#{SEQ}
+
+	</delete>
+</mapper>

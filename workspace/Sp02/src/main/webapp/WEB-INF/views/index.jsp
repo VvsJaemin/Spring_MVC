@@ -10,7 +10,8 @@
 	<h1> Sp02 Index </h1>
 	
 	<p>
-		<a href="address/list.do">주소록</a>
+		<!-- <a href="address/list.do">주소록</a> -->
+		<a href="board/list.do">방명록</a>
 	</p>
 	
 	

@@ -5,8 +5,11 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="Address" type="min.md.domain.Address"/>
+		<typeAlias alias="Board" type="min.md.domain.Board"/>
 	</typeAliases>
+	
 	<mappers>
 		<mapper resource="min/md/mapper/AddressMapper.xml"/>
+		<mapper resource="min/md/mapper/BoardMapper.xml"/>
 	</mappers>
 </configuration>

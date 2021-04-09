@@ -28,11 +28,8 @@
 			value="classpath:/mybatis-config.xml" />
 	</bean>
 	<context:component-scan
-		base-package="min.md.dao" />
-	<context:component-scan
-		base-package="min.md.mapper" />
-			<context:component-scan
-		base-package="min.md.service" />
+		base-package="min.md.*" />
+
 	<mybatis-spring:scan base-package="min.md.mapper" />
 	
 </beans>
