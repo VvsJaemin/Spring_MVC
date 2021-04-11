@@ -61,11 +61,6 @@
 </tr>
 <tr>
 	 <td colspan='2' align='center'>
-	 <script type="text/javascript">
-
-  alert("수정 완료");
-
-</script>
 		<input type='submit' value='수정'>
 		<input type="button" value="다시입력" onclick="f()">
 	 </td>

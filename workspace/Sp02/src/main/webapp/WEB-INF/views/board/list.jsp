@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=utf-8"
 	import="java.util.*, min.md.domain.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <head>
 <title>Spring Board</title>
 <meta charset="UTF-8">
@@ -48,15 +49,16 @@ a {
 						<td>${board.email}</td>
 						<td>${board.subject}</td>
 						<td>${board.content}</td>
-						<td>${board.rdate}</td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.rdate}"/></td>
 						<td align='center'><a href="content.do?seq=${board.seq}">자세히읽기</a>
 					</tr>
 				</c:forEach>
 
 
-			</table>
-			<h3>${pageMaker}</h3>
+			</table>&nbsp;&nbsp;&nbsp;
 			<div class='pull-right'>
+			<hr width='600' size='2' color='gray' noshade> <font
+			color='gray' size='3' face='휴먼편지체'>
 			<ul class="pagination">
 			<c:if test="${pageMaker.prev}">
 			<li><a href="list.do?pageNum=${pageMaker.startPage-1}">이전</a>
@@ -64,23 +66,16 @@ a {
 					</c:if>
 			<c:forEach begin="${pageMaker.startPage}"
 						end="${pageMaker.endPage}" var="num">
-						<li <c:out value="${pageMaker.cri.pageNum == num ? 'class=active' : ''}"/>>
-						<a href="list.do?pageNum=${num}">${num}</a></li>
+						 <c:out value="${pageMaker.cri.pageNum == num ? '' : ''}"/>
+						<a href="list.do?pageNum=${num}">${num}</a>
 						</c:forEach>
 						<c:if test="${pageMaker.next &&pageMaker.endPage>0}">
-					<li> <a href="${path}list.do?pageNum=${pageMaker.endPage +1}">다음</a>
-					</li>
+					 <a href="${path}list.do?pageNum=${pageMaker.endPage +1}">다음</a>
 					</c:if>
 						</ul>
 						</div>
-			<hr width='600' size='2' color='gray' noshade> <font
-			color='gray' size='3' face='휴먼편지체'> (총페이지수 : 3)
-				&nbsp;&nbsp;&nbsp; <a href="list.do?seq=1"> <strong>1</strong>
-
-
-
-			</a>&nbsp; <a href="list.do?seq=2"> 2 </a>&nbsp; <a href="list.do?seq=3">
-
+						
+		
 
 
 					3 </a>&nbsp; ( TOTAL : 9 ) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 페이지 싸이즈
