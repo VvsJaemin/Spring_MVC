@@ -1,6 +1,6 @@
 <%@page import="min.md.domain.Board"%>
 <%@ page contentType="text/html;charset=utf-8"
-	import="java.util.*, min.md.domain.Board"%>
+	import="java.util.*, min.md.domain.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 <title>Spring Board</title>
@@ -37,7 +37,7 @@ a {
 
 				<c:if test="${empty list}">
 					<tr>
-						<td align='center' colspan="5">데이터가 하나도 없음</td>
+						<td align='center' colspan="7">데이터가 하나도 없음</td>
 					</tr>
 				</c:if>
 
@@ -55,13 +55,31 @@ a {
 
 
 			</table>
+			<h3>${pageMaker}</h3>
+			<div class='pull-right'>
+			<ul class="pagination">
+			<c:if test="${pageMaker.prev}">
+			<li><a href="list.do?pageNum=${pageMaker.startPage-1}">이전</a>
+			</li>
+					</c:if>
+			<c:forEach begin="${pageMaker.startPage}"
+						end="${pageMaker.endPage}" var="num">
+						<li <c:out value="${pageMaker.cri.pageNum == num ? 'class=active' : ''}"/>>
+						<a href="list.do?pageNum=${num}">${num}</a></li>
+						</c:forEach>
+						<c:if test="${pageMaker.next &&pageMaker.endPage>0}">
+					<li> <a href="${path}list.do?pageNum=${pageMaker.endPage +1}">다음</a>
+					</li>
+					</c:if>
+						</ul>
+						</div>
 			<hr width='600' size='2' color='gray' noshade> <font
 			color='gray' size='3' face='휴먼편지체'> (총페이지수 : 3)
-				&nbsp;&nbsp;&nbsp; <a href="list.do?cp=1"> <strong>1</strong>
+				&nbsp;&nbsp;&nbsp; <a href="list.do?seq=1"> <strong>1</strong>
 
 
 
-			</a>&nbsp; <a href="list.do?cp=2"> 2 </a>&nbsp; <a href="list.do?cp=3">
+			</a>&nbsp; <a href="list.do?seq=2"> 2 </a>&nbsp; <a href="list.do?seq=3">
 
 
 

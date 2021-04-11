@@ -12,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import lombok.extern.log4j.Log4j;
 import min.md.domain.Board;
+import min.md.domain.Criteria;
+import min.md.domain.PageDTO;
 import min.md.service.BoardService;
 import oracle.jdbc.proxy.annotation.Post;
-
+@Log4j
 @Controller
 @RequestMapping("/board/*")
 public class BoardController {
@@ -24,13 +27,14 @@ public class BoardController {
 	private BoardService boardService;
 
 	@GetMapping("list.do")
-	public ModelAndView list() {
+	public String list(Criteria cri, Model model) {
 
-		List<Board> list = boardService.list();
+		log.info("list : " + cri);
+		model.addAttribute("list", boardService.getList(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri,123));
+//		ModelAndView mv = new ModelAndView("board/list", "list", list);
 
-		ModelAndView mv = new ModelAndView("board/list", "list", list);
-
-		return mv;
+		return "board/list";
 	}
 
 	@GetMapping("write.do")

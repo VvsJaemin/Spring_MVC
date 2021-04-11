@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.log4j.Log4j;
 import min.md.domain.Board;
+import min.md.domain.Criteria;
 import min.md.mapper.BoardMapper;
 
 @Log4j
@@ -17,10 +18,7 @@ public class BoardServiceImpl implements BoardService {
 	@Autowired
 	private BoardMapper boardMapper;
 
-	public List<Board> list() {
-		// TODO Auto-generated method stub
-		return boardMapper.list();
-	}
+
 
 	@Override
 	public void insert(Board board) {
@@ -47,6 +45,20 @@ public class BoardServiceImpl implements BoardService {
 	public void update(Board board) {
 		// TODO Auto-generated method stub
 		boardMapper.update(board);
+	}
+
+
+	@Override
+	public List<Board> getList() {
+		// TODO Auto-generated method stub
+		return boardMapper.getList();
+	}
+
+
+	@Override
+	public List<Board> getList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return boardMapper.getListWithPaging(cri);
 	}
 
 

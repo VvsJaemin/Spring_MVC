@@ -4,11 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="min.md.mapper.BoardMapper">
 
-	<select id="list" resultType="board">
+	<select id="getList" resultType="board">
 
 		SELECT*FROM BOARD order by SEQ desc
 
-	</select>
+	</select>  
 
 	<insert id="insert" parameterType="board">
 
@@ -25,6 +25,14 @@
 		#{SEQ}
 
 	</select>
+
+	<select id="getListWithPaging" resultType="board">
+	
+		<![CDATA[
+		SELECT * FROM (SELECT rownum rn, seq, subject, content, writer, email, rdate FROM BOARD WHERE rownum <=#{pageNum} * #{amount})
+		where rn > (#{pageNum}-1) * #{amount} ]]>
+	
+	</select> 
 
 	<update id="update">
 
