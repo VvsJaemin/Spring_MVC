@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=utf-8"
 	import="java.util.*, min.md.domain.Address"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <meta charset="utf-8">
 <style>
 table, th, td {
@@ -38,7 +39,7 @@ a {
 				<td align='center'>${address.seq}</td>
 				<td>${address.name}</td>
 				<td>${address.addr}</td>
-				<td>${address.rdate}</td>
+				<td align="center"><fmt:formatDate pattern="yyyy-MM-dd" value="${address.rdate}"/></td>
 				<td align='center'><a href='del.do?seq=${address.seq}'>삭제</a></td>
 			</tr>
 		</c:forEach>

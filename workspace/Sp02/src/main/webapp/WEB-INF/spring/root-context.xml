@@ -29,7 +29,7 @@
 	</bean>
 	<context:component-scan
 		base-package="min.md.*" />
-
+		
 	<mybatis-spring:scan base-package="min.md.mapper" />
 	
 </beans>

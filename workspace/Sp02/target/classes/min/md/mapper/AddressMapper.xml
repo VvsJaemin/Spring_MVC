@@ -5,19 +5,43 @@
 <mapper namespace="min.md.mapper.AddressMapper">
 	<select id="list" resultType="Address">
 
-		SELECT * FROM Address order by SEQ desc
+		SELECT * FROM Address order by SEQ
+		desc
 
 	</select>
 
-	<insert id="insert" parameterType="Address">
+	<insert id="insert" parameterType="Address"
+		useGeneratedKeys="true" keyProperty="seq">
+		<selectKey keyProperty="seq" resultType="long"
+			order="BEFORE">
 
-		insert into Address values(ADDRESS_SEQ.nextval, #{name}, #{addr}, SYSDATE)
+			SELECT ADDRESS_SEQ.nextval from DUAL
+
+		</selectKey>
+
+		insert into Address
+		values(ADDRESS_SEQ.nextval, #{name}, #{addr},
+		SYSDATE)
+
 
 	</insert>
-	
+
+	<insert id="files" parameterType="Address">
+
+
+		insert into address_file
+		(SEQF, SEQ, OFNAME, SFNAME, FSIZE)
+		values(ADDRESS_FILE_SEQF.nextval,
+		#{SEQ}, #{OFNAME}, #{SFNAME}, #{FSIZE})
+
+	</insert>
+
+
+
 	<delete id="delete" parameterType="long">
-	
-	delete from Address WHERE SEQ=#{SEQ}
-	
+
+		delete from Address WHERE
+		SEQ=#{SEQ}
+
 	</delete>
 </mapper>
