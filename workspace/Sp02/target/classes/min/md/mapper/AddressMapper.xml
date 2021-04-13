@@ -10,8 +10,7 @@
 
 	</select>
 
-	<insert id="insert" parameterType="Address"
-		useGeneratedKeys="true" keyProperty="seq">
+	<insert id="insertSelectKey" parameterType="Address">
 		<selectKey keyProperty="seq" resultType="long"
 			order="BEFORE">
 
@@ -19,24 +18,28 @@
 
 		</selectKey>
 
-		insert into Address
-		values(ADDRESS_SEQ.nextval, #{name}, #{addr},
+		insert into ADDRESS
+		values(#{seq}, #{name}, #{addr},
 		SYSDATE)
 
 
 	</insert>
 
-	<insert id="files" parameterType="Address">
+	<insert id="insertF" parameterType="AddressFile">
 
 
-		insert into address_file
-		(SEQF, SEQ, OFNAME, SFNAME, FSIZE)
-		values(ADDRESS_FILE_SEQF.nextval,
-		#{SEQ}, #{OFNAME}, #{SFNAME}, #{FSIZE})
+		insert into ADDRESS_FILE
+		values(ADDRESS_FILE_SEQ.nextval,
+		#{ofname}, #{sfname}, #{fsize},
+		#{seq})
 
 	</insert>
 
+	<select id="fileListForRemove" parameterType="long" resultType="AddressFile">
 
+		select * from ADDRESS_FILE where SEQ=#{seq}
+
+	</select>
 
 	<delete id="delete" parameterType="long">
 
@@ -44,4 +47,5 @@
 		SEQ=#{SEQ}
 
 	</delete>
+
 </mapper>

@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.AbstractView;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
-public class FileDownloadView extends AbstractView { // View역할을 하는 JSP같은 것이다. 자바 파일을 jsp(view)처럼 쓰게 하기위해서는 컨트롤러(servletcontext-xml)
+public class FileDownloadView extends AbstractView { 
 	public FileDownloadView() {
 		setContentType("application/download;charset=utf-8");
 	}

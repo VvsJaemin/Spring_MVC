@@ -17,11 +17,6 @@ public class Address {
 	private String addr;
 	private Date rdate;
 	
-	private long seqf;
-	private String ofname;
-	private String sfname;
-	private long fsize;
-	
 //	private List<AddressAttachVO> attachList;
 
 }

@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.log4j.Log4j;
 import min.md.domain.Address;
-import min.md.service.AddressAttachService;
+import min.md.domain.AddressFile;
 import min.md.service.AddressService;
 
 @Log4j
@@ -44,21 +44,23 @@ public class AddressController {
 	}
 
 	@PostMapping("write.do")
-	public String write(String name, String addr, Address address, @RequestParam ArrayList<MultipartFile> files) {
+	public String write(Address address, @RequestParam ArrayList<MultipartFile> files) {
+		ArrayList<AddressFile> uploadedFileList = null;
 
-		
-		log.info("#name: " + address.getName() + ", addr: " + address.getAddr());
-		for (MultipartFile file : files) {
-			log.info("#ofname: " + file.getOriginalFilename());
-			log.info("#fsize: " + file.getSize());
+		try {
+			uploadedFileList = addressService.insert(address, files);
+		} catch (Exception ex) {
+			log.info("#AddressController write ex :  " + uploadedFileList); //null
+			addressService.removeFiles();
 		}
-		addressService.insert(name, addr, address, files);
+
 		return "redirect:list.do";
 	}
 
 	@GetMapping("del.do")
 	public String delete(long seq) {
-		addressService.delete(seq);
+		addressService.removeFiles(seq);// 업로드된 파일들 제거 
+		addressService.delete(seq); // DB 데이터 제거 
 
 		return "redirect:list.do";
 	}
